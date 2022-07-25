@@ -24,16 +24,26 @@ function App() {
     }
 ])
 
+//Issue
 //For deleting tasks
-const deleteTask = (id) =>{
-  setTasks(tasks.filter((task) => task.id!==id))
+const deleteTask = (e) =>{
+  setTasks(tasks.filter((task) => task.id!==e))
+}
+
+//Issue
+//For toggling reminder green left-padding
+const toggleRem = (e) =>{
+  setTasks(tasks.map((task) =>
+    (task.id === e)? 
+    {...task, reminder:!task.reminder} : task
+    ))
 }
 
   return (
     <div className="container">
       <Header title="Task Tracker"/>
       {tasks.length>0?(
-          <Tasks tasks={tasks} deleteTask={deleteTask}/>
+          <Tasks tasks={tasks} deleteTask={deleteTask} toggleRem={toggleRem}/>
       ):(
         <h3>No Tasks</h3>
       )}
