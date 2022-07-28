@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Header from './components/Header'
 import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
 
 function App() {
   const [tasks,setTasks] = useState([    
@@ -24,6 +25,14 @@ function App() {
     }
 ])
 
+//Issue 
+//For adding tasks
+const onAdd = (e) =>{
+  const id=Math.floor(Math.random()*1000)+1
+  const newTask = {id, ...e}
+  setTasks([...tasks, newTask])
+}
+
 //Issue
 //For deleting tasks
 const deleteTask = (e) =>{
@@ -42,6 +51,7 @@ const toggleRem = (e) =>{
   return (
     <div className="container">
       <Header title="Task Tracker"/>
+      <AddTask onAdd={onAdd}/>
       {tasks.length>0?(
           <Tasks tasks={tasks} deleteTask={deleteTask} toggleRem={toggleRem}/>
       ):(
