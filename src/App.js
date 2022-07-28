@@ -4,6 +4,8 @@ import Tasks from './components/Tasks'
 import AddTask from './components/AddTask'
 
 function App() {
+  const [showAddTask,setAddTask] = useState(false)
+
   const [tasks,setTasks] = useState([    
     {
         id:1,
@@ -50,8 +52,12 @@ const toggleRem = (e) =>{
 
   return (
     <div className="container">
-      <Header title="Task Tracker"/>
-      <AddTask onAdd={onAdd}/>
+      <Header 
+        title="Task Tracker" 
+        showtask={() => setAddTask(!showAddTask)}
+        showAdd={showAddTask}
+      />
+      {showAddTask && <AddTask onAdd={onAdd}/>}
       {tasks.length>0?(
           <Tasks tasks={tasks} deleteTask={deleteTask} toggleRem={toggleRem}/>
       ):(
