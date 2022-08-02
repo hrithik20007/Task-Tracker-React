@@ -27,20 +27,22 @@ const onAdd = async (e) =>{
 //Issue
 useEffect(() => {
   const getTasks = async() => {
-    const serverTask = await fetchTasks()
-    setTasks(serverTask)
-  }
+    // const serverTask = await fetchTasks()
+    // setTasks(serverTask)
+    const response= await fetch('http://localhost:5000/tasks')
+    const data= await response.json()
+    setTasks(data)
 
+  }
   getTasks()
 },[])
 //Issue
-//Fetch Task
-const fetchTasks= async() => {
-  const response= await fetch('http://localhost:5000/tasks')
-  const data= await response.json()
-
-  return data
-}
+//Fetch Tasks
+// const fetchTasks= async() => {
+//   const response= await fetch('http://localhost:5000/tasks')
+//   const data= await response.json()
+//   return data
+// }
 
 //Issue
 //For deleting tasks
