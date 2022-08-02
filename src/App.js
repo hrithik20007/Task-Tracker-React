@@ -10,10 +10,18 @@ function App() {
 
 //Issue 
 //For adding tasks
-const onAdd = (e) =>{
-  const id=Math.floor(Math.random()*1000)+1
-  const newTask = {id, ...e}
-  setTasks([...tasks, newTask])
+const onAdd = async (e) =>{
+  const postTask=await fetch(`http://localhost:5000/tasks/`,{
+    method:'POST',
+    headers:{'Content-type':'application/json'},
+    body:JSON.stringify(e),
+  })
+  const data = await postTask.json()
+  setTasks([...tasks,data])
+
+  //const id=Math.floor(Math.random()*1000)+1
+  //const newTask = {id, ...e}
+  //setTasks([...tasks, newTask])
 }
 
 //Issue
