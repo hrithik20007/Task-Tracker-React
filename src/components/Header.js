@@ -1,15 +1,16 @@
 import Button from './Button'
+import { useLocation } from 'react-router-dom'
 
 const Header = (props) => {
 
   return (
     <header className="header">
         <h1>{props.title}</h1>
-        <Button 
+        {useLocation().pathname ==='/' && (<Button 
           color={props.showAdd? 'red':'green'} 
           text={props.showAdd? 'Close':'Add'} 
           onClick={props.showtask}
-        />
+        />)}
         {/* <button className="btn">Add</button> */}
 
 
@@ -18,7 +19,7 @@ const Header = (props) => {
 }
 
 Header.defaultProps = {
-    title: 'This is a task tracker',
+    title: 'This is a Task Tracker',
 }
 
 // const headstyle={
